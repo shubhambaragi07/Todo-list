@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="./Todo.css">
+</head>
+<body>
+  <div class="listcontainer">
+    <div class="todo-app">
+      <h2>To-Do List</h2>
+      <div class="row">
+        <input type="text" id="inputactivity" placeholder="Enter your task...">
+        <button onclick="add()">Enter</button>
+      </div>
+      <ul id="List-container">
+        <!-- Tasks will be dynamically added here -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function add() {
+      var inputVal = document.getElementById("inputactivity").value;
+      if (inputVal.trim() !== "") {
+        var li = document.createElement("li");
+        li.textContent = inputVal;
+        var span = document.createElement("span");
+        span.textContent = "×";
+        span.className = "close";
+        span.onclick = function() {
+          var li = this.parentElement;
+          li.style.display = "none";
+        };
+        li.appendChild(span);
+        li.onclick = function() {
+          this.classList.toggle("checked");
+        };
+        document.getElementById("List-container").appendChild(li);
+        document.getElementById("inputactivity").value = "";
+      } else {
+        alert("Please enter a task!");
+      }
+    }
+  </script>
+</body>
+</html>
